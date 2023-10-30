@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Experimentos</title>
+    {% load static %}
+    <link rel="icon" href="{% static "seedgui/media/seed.png" %}">
+    <link rel="stylesheet" href="../../static/experimentos/styles.css" />
+</head>
+<body>
+    <div class="container center-y">
+        
+            <h1>Menú de Experimentos</h1>
+            <hr class="lines">
+        
+            <form action="/admin/experimentos/experimento/add/" method="get">
+                <button>Crear Experimento</button>
+            </form>
+        
+            <form action="{% url 'experimentos:cargar_experimento' %}" method="get">
+                <button>Cargar Experimento</button>
+            </form>
+        
+            <form action="{% url 'experimentos:lista_experimentos' %}" method="get">
+                <button>Ver Experimentos</button>
+            </form>
+        
+            <form action="../" method="get">
+                <button>Volver a inicio</button>
+            </form>
+            <hr class="lines">
+    
+    </div>
+</body>
+</html>

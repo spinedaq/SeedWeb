@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Counter</title>
+    {% load static %}
+    <link rel="icon" href="{% static "seedgui/media/seed.png" %}">
+    <link rel="stylesheet" href="{% static 'seedgui/styles.css' %}" />
+    <style>
+        body {
+             font-family: 'Roboto', sans-serif !important;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: center;">
+            <h1>Seed Counter</h1>
+            {% load static %}
+            <img src="{% static "seedgui/media/logo_unal.svg" %}" alt="home"/>
+            <img src="{% static "seedgui/media/logo_ucaldas.png" %}" alt="home"/>
+            <hr>
+            <h2>Menú Principal</h2>
+        </div>
+        <form action="{% url 'experimentos:lista_experimentos' %}" method="get">
+            <button>Experimentos</button>
+        </form>
+        <form action="{% url 'test:index' %}" method="get">
+            <button>Test</button>
+        </form>
+        <form action="{% url 'admin:index' %}" method="get">
+            <button>Admin site</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <hr>
+        <div class="about">
+            <h2>Acerca de</h2>
+            Seed Counter es un sistema que permite realizar conteos de semillas de manera automática, utilizando algoritmos de inteligencia artificial.
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <div style="width: 100%;">
+        <div style="text-align: center;">
+            <h1>Menú de Tests</h1>
+            <hr>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%;">
+            <form action="{% url 'test:video_feed' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Test de stream de video</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="{% url 'test:captures' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Test de capturas</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="{% url 'test:captures_results' %}" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Resultados de test de capturas</button>
+            </form>
+        </div>
+        <div style="width: 100%; text-align: center; margin-top: 2%">
+            <form action="../" method="get">
+                <button style="width: 30%; margin-left: auto; margin-right: auto; background-color: gray; color: white;">Volver a inicio</button>
+            </form>
+        </div>
+    </div>
+    <hr>
+    
+</body>
+</html>
+
+

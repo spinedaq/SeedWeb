@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimentos</title>
+    {% load static %}
+    <link rel="icon" href="{% static "seedgui/media/seed.png" %}">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif !important;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+        form button {
+            min-width: 300px; 
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: #BFBFBF ;
+        }
+
+        form button:hover {
+            background-color: #3E8E41;
+        }
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            overflow: hidden;
+            text-align: center;
+            font-family: arial;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .status-circle.Creado{
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            margin: 15px;
+            background-color: gray;
+        }
+
+        .status-circle.Iniciado{
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            margin: 15px;
+            background-color: orange;
+        }
+
+        .status-circle.Finalizado{
+            border-radius: 50%;
+            width: 15px;
+            height: 15px;
+            margin: 15px;
+            background-color: green;
+        }
+
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .status {
+            font-size: 16px;
+            margin: 10px;
+            align-self: center;
+        }
+
+        .card-link {
+            display: block;
+            color: #000000;
+            text-decoration: none;
+            padding: 10px;
+            transition: background-color 0.3s;
+            flex: 1;
+        }
+
+        .card-link:hover {
+            background-color: #f2f2f2;
+        }
+
+
+        @media screen and (max-width: 768px) {
+            .card {
+                width: 90%;
+                margin: 10px auto;
+            }
+        }
+
+        .settings {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+        }
+
+        .settings-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dot {
+            display: block;
+            width: 3px;
+            height: 3px;
+            margin: 3px;
+            background-color: #000;
+            border-radius: 50%;
+        }
+
+        .settings-menu {
+            position: absolute;
+            bottom: 25px;
+            right: -10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            display: none;
+            margin:15;
+        }
+
+        .settings:hover .settings-menu {
+            display: block;
+        }
+
+        .settings-menu a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        .settings-menu a:hover {
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; margin-top: 40px;">Lista de Experimentos</h1>
+
+    <div style="display: flex; flex-wrap: wrap;">
+        {% for x in experimentos %}
+        <div class="card">
+            <div class="status-circle {{x.status}}">
+            </div>
+            <a class="card-link {{x.status}}" href="{% url 'experimentos:resultados_experimento' x.id %}">
+                <h2 class="title">{{x.nombre}}</h2>
+                <p class="status">{{x.status}}</p>
+                <p class="status">{{x.progreso|floatformat:-2}} %</p>
+                <p class="status">{{x.imagenes_capturadas}}/{{x.cantidad_imagenes}}</p>
+            </a>
+            <div class="settings">
+                <button class="settings-btn">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </button>
+                <div class="settings-menu">
+                    <a href="/admin/experimentos/experimento/{{x.id}}/change/">Editar</a>
+                    <a href="/admin/experimentos/experimento/{{x.id}}/delete/">Eliminar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="card">
+            <a class="card-link" href="/admin/experimentos/experimento/add/">
+                <h2 class="title">Crear Experimento</h2>
+                {% load static %}
+                <img src="{% static "seedgui/media/new-page.png" %}" alt="new" height=50px/>
+            </a>
+        </div>
+        <div class="card">
+            <a class="card-link" href="{% url 'experimentos:cargar_experimento'%}">
+                <h2 class="title">Cargar Experimento</h2>
+                {% load static %}
+                <img src="{% static "seedgui/media/upload.png" %}" alt="new" height=50px/>
+            </a>
+        </div>
+    </div>
+    <div class="container center-y">
+    <form action="{% url 'index' %}" method="get">
+        <button>Inicio</button>
+    </form>
+    </form>
+    </div>
+</body>
+</html>
